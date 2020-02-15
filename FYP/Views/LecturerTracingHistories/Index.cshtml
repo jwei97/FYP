@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FYP.Models.TracingHistory>
+
+@{
+    ViewData["Title"] = "View user  Document History";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+}
+
+    <div>
+        <h3>Document Tracing History </h3>
+    </div>
+<table class="table" id="example1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccessTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.FileURL)">
+                    <img style="width:50px;" id="image" src="http://icons.iconarchive.com/icons/papirus-team/papirus-mimetypes/512/x-office-document-icon.png">
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FYP.Models.Course>
+
+@{
+    ViewData["Title"] = "View Available Course";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+}
+
+    <div>
+        <h3>Course Information </h3>
+    </div>
+
+<table class="table" id="example1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

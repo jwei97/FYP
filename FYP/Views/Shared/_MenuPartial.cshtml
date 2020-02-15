@@ -1,0 +1,110 @@
+﻿
+
+@using Microsoft.AspNetCore.Http
+@using static FYP.Helper.ConstantManager;
+@inject IHttpContextAccessor httpContextAccessor
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">FYP A.A.S</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+
+            @if (@httpContextAccessor.HttpContext.Session.GetString(HttpSessionName.CURRENT_TYPE) == SecurityConstants.ACCOUNT_TYPE_ADMIN)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="AdminAccountModules" asp-action="Index">AccountModules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="AdminAccounts" asp-action="Index">Accounts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="AdminCourses" asp-action="Index">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="AdminDocuments" asp-action="Index">Documents</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="AdminLogHistories" asp-action="Index">LogHistories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="AdminModules" asp-action="Index">Modules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="AdminTracingHistories" asp-action="Index">TracingHistories</a>
+                </li>
+            }
+
+            @if (@httpContextAccessor.HttpContext.Session.GetString(HttpSessionName.CURRENT_TYPE) == SecurityConstants.ACCOUNT_TYPE_LECTURE)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="LecturerAccountModules" asp-action="Index">Account Modules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="LectruerCourses" asp-action="Index">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="LecturerDocuments" asp-action="Index">Documents</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="LecturerDocuments" asp-action="Pending">Pending Documents</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="LecturerModules" asp-action="Index">Modules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="LecturerProfile" asp-action="Index">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="LecturerTracingHistories" asp-action="Index">TracingHistories</a>
+                </li>
+            }
+
+
+            @if (@httpContextAccessor.HttpContext.Session.GetString(HttpSessionName.CURRENT_TYPE) == SecurityConstants.ACCOUNT_TYPE_STUDENT)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="StudentCourses" asp-action="Index">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="StudentDocuments" asp-action="Index">Documents</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="StudentModules" asp-action="Index">Modules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="StudentProfile" asp-action="Index">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="StudentUploadedDocuments" asp-action="Index">Uploaded Documents</a>
+                </li>
+            }
+        </ul>
+
+        @if (@httpContextAccessor.HttpContext.Session.GetString(HttpSessionName.CURRENT_USERNAME) != null)
+        {
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-dark">@httpContextAccessor.HttpContext.Session.GetString(HttpSessionName.CURRENT_USERNAME)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark">(@httpContextAccessor.HttpContext.Session.GetString(HttpSessionName.CURRENT_TYPE))</a>
+                </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="return ConfirmLogout()" asp-controller="Login" asp-action="Logout">Logout</button>
+            </form>
+        }
+        <script>
+            function ConfirmLogout() {
+                return confirm("Are you sure you want to logout?");
+            }
+        </script>
+    </div>
+</nav>

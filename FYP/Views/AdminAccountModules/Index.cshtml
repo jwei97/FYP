@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FYP.Models.AccountModule>
+
+@{
+    ViewData["Title"] = "Student Account Module";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+}
+
+    <div>
+        <h3>Account Module Information </h3>
+        | <a asp-action="Create"><h4 class="box-title"> <strong>Create Account Module</strong></h4></a>
+    </div>
+<table id="example1" class="table" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Module)
+            </th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Module.ModuleName)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger" onclick="ConfirmDelete()" asp-action="Delete" asp-route-AccountId=@item.AccountId asp-route-ModuleId=@item.ModuleId>Delete</button>
+                </td>
+            </tr>          
+
+        }
+    </tbody>
+</table>
+<script>
+    function ConfirmDelete() {
+                 confirm("Are you sure you want to Delete '?");
+            }
+</script>
+

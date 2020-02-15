@@ -1,0 +1,54 @@
+﻿@model IEnumerable<FYP.Models.Document>
+
+@{
+    ViewData["Title"] = "View Document ";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+}
+
+    <div>
+        <h3>Document Information </h3>
+        | <a asp-action="Create"><h4 class="box-title"> <strong>Create Document</strong></h4></a>
+    </div>
+<table class="table" id="example1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DocName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Module)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountUpload.Username)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Module.ModuleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountUpload.Username)
+                </td>
+                <td>
+                    <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.ID">View</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,66 @@
+﻿@model FYP.Models.Document
+
+@{
+    ViewData["Title"] = "Edit Document";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Document</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="FileURL" />
+            <div class="form-group">
+                <label asp-for="DocName" class="control-label"></label>
+                <input asp-for="DocName" class="form-control" />
+                <span asp-validation-for="DocName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileURL" class="control-label"></label>
+                <a href="@Html.DisplayFor(model => model.FileURL)">
+                    <img style="width:50px;" id="image" src="http://icons.iconarchive.com/icons/papirus-team/papirus-mimetypes/512/x-office-document-icon.png">
+                </a>
+                <input type="file" accept="image/*" name="files" id="files" onchange="loadFile(event)" class="form-control" value="@Model.FileURL">
+                <span asp-validation-for="FileURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModuleId" class="control-label"></label>
+                <select asp-for="ModuleId" class="form-control" asp-items="ViewBag.ModuleId"></select>
+                <span asp-validation-for="ModuleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UploadById" class="control-label"></label>
+                <select asp-for="UploadById" class="form-control" asp-items="ViewBag.UploadById"></select>
+                <span asp-validation-for="UploadById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control" asp-items="ViewBag.Status"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Deleted" /> @Html.DisplayNameFor(model => model.Deleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

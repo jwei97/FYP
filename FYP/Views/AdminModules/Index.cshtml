@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FYP.Models.Module>
+
+@{
+    ViewData["Title"] = "View Module";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+}
+
+    <div>
+        <h3> Module Information </h3>
+        | <a asp-action="Create"><h4 class="box-title"> <strong>Create Module</strong></h4></a>
+    </div>
+<table id="example1" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ModuleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-outline-secondary" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" class="btn btn-outline-success" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

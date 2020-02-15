@@ -1,0 +1,58 @@
+﻿@model FYP.Models.Account
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout-Empty.cshtml";
+}
+
+<style type="text/css">
+    .login-form {
+        width: 340px;
+        margin: 50px auto;
+    }
+
+        .login-form form {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+
+    .btn {
+        font-size: 15px;
+        font-weight: bold;
+    }
+</style>
+<div class="text-center">
+    <h1 class="display-4">AssignAssistSys 2020</h1>
+    <p>Learn about constructing assignment !!!! </p>
+</div>
+<div class="login-form">
+    <form asp-action="Login" method="post">
+        <h2 class="text-center">Sign In </h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input asp-for="Username" id="inputEmail" autofocus="" class="form-control" placeholder="username" required="required" type="text">
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="Password" id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+    </form>
+
+    @*<div class="w-full text-center">
+            <li><a asp-area="" asp-controller="Home" asp-action="SignIn">Sign Up</a></li>
+        </div>*@
+</div>

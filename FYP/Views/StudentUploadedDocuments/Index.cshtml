@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FYP.Models.Document>
+
+@{
+    ViewData["Title"] = "View Document";
+    Layout = "~/Views/Shared/_Layout-User.cshtml";
+}
+
+    <div>
+        <h3>Document Information </h3>
+        | <a asp-action="Create"><h4 class="box-title"> <strong>Create Document</strong></h4></a>
+    </div>
+<table class="table" id="example1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DocName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Module)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountUpload)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.FileURL)">
+                    <img style="width:50px;" id="image" src="http://icons.iconarchive.com/icons/papirus-team/papirus-mimetypes/512/x-office-document-icon.png">
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Module.ModuleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountUpload.Username)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-outline-secondary" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" class="btn btn-outline-success" asp-route-id="@item.ID">Details</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
